@@ -16,9 +16,10 @@ Template.post.events({
     'click #add_post':function(){
         console.log(this._id);
         var campaign =Session.get('selectedCampaign');
-        campaign.posts.push(this._id);
-        console.log(campaign);
-        Meteor.call('addPostToCampaign',this,campaign._id);
+        Meteor.call('addPostToCampaign',this,campaign._id,function(err,res){
+            console.log(err);
+
+        });
     }
 });
 

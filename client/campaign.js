@@ -5,7 +5,6 @@
 Meteor.subscribe("campaigns");
 
 
-
 Template.campaign.events({
     'submit #newcampaign': function (event) {
         event.preventDefault();
@@ -15,6 +14,7 @@ Template.campaign.events({
                 title: title,
                 created:new Date(),
                 posts:[],
+                output:[],
                 owner:Meteor.userId()
             }
         );
@@ -26,5 +26,6 @@ Template.campaign.helpers({
        return Campaigns.find();
    }
 });
+
 
 
