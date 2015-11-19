@@ -1,0 +1,22 @@
+<template  name="home">
+Login with Facebook account
+{{>loginButtons}}
+
+<button id="get_page_btn">Get Pages</button>
+    <ul>
+        {{#each pages}}
+            {{> page}}
+        {{/each}}
+    </ul>
+    {{>wpinput}}
+
+
+</template>
+
+<template name="page">
+    <li>{{name}} <button id="post">Post</button></li>
+</template>
+
+
+
+
