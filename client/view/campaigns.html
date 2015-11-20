@@ -10,22 +10,37 @@
 
 
 <template name="campaignview">
-<a href="{{pathFor route='campaign.output'}}">Output</a>
     <div class="row">
-    <div class="col-md-6">
-        <h2>Selected Posts</h2>
-        <ul>
-            {{#each posts}}
-                <li>{{message}}</li>
-            {{/each}}
-        </ul>
-    </div>
-    <div class="col-md-6">
-        <h2>Available Posts</h2>
-        {{>postSelect}}
-    </div>
-</div>
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" role="tablist">
+                 <li role="presentation"><a href="#camp_posts" aria-controls="camp_posts" role="tab" data-toggle="tab">Posts</a></li>
+                <li role="presentation"><a href="#camp_output" aria-controls="camp_output" role="tab" data-toggle="tab">Output</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Schedule</a></li>
+            </ul>
 
+            <!-- Tab panes -->
+            <div class="tab-content">
+                 <div role="tabpanel" class="tab-pane" id="camp_posts">{{>camp_posts}}</div>
+                <div role="tabpanel" class="tab-pane" id="camp_output">{{>campaignOutput}}</div>
+                <div role="tabpanel" class="tab-pane" id="settings">{{>schedule}},</div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="camp_posts">
+        <div class="col-md-6">
+            <h2>Selected Posts</h2>
+            <ul>
+                {{#each posts}}
+                    <li>{{message}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Available Posts</h2>
+            {{>postSelect}}
+        </div>
 </template>
 
 

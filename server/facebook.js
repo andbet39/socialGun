@@ -1,8 +1,8 @@
 
 
 
-Meteor.publish('pages',function(){
-	return Pages.find({user_id:this.userId});
+Meteor.publish('outputs',function(){
+	return Outputs.find({user_id:this.userId});
 });
 
 
@@ -39,8 +39,6 @@ Meteor.methods({
 				done(null, res.data);
 
 			});
-
-
 		});
 
 		if (fbcall.error)
@@ -48,10 +46,11 @@ Meteor.methods({
 
 
 		fbcall.result.forEach(function (value) {
-			var page = Pages.findOne({id:value.id});
+			var page = Outputs.findOne({id:value.id});
 			if(!page){
 				value.user_id = Meteor.user()._id;
-				Pages.insert(value);
+				value.output_type = 'FBPage';
+				Outputs.insert(value);
 			}
 		});
 

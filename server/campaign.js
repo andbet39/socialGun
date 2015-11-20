@@ -7,9 +7,6 @@ Meteor.publish('campaigns',function(){
 });
 
 
-
-
-
 Meteor.methods({
     'addPostToCampaign':function(post,camp_id){
         var exist  = Campaigns.findOne({$and:[{_id:camp_id},{posts:{$elemMatch:{_id:post._id}}}]});
@@ -22,7 +19,15 @@ Meteor.methods({
 
         }
     },
-    'addOutputToCampaign':function(ouput_id,camp_id){
+    'addOutputToCampaign':function(output,camp_id){
+        var exist  = Campaigns.findOne({$and:[{_id:camp_id},{outputs:{$elemMatch:{_id:output._id}}}]});
+        console.log('Add output to :'+camp_id);
+        if(!exist) {
+            Campaigns.update({_id:camp_id},{ $push: { outputs: output }});
+            return {message: 'Added'};
+        }else{
+            throw new Meteor.Error( 500, 'Output already in campaign' );
 
+        }
     }
 });

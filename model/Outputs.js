@@ -1,0 +1,1 @@
+Outputs =  new Mongo.Collection('outputs');
